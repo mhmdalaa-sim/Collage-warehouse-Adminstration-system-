@@ -3,85 +3,112 @@ import {Link, useParams} from "react-router-dom"
 import { Container,Row,Col,Button,Form,FormLabel,FormControl,InputGroup } from 'react-bootstrap'
 import {useState} from "react";
 import { useNavigate } from "react-router-dom"
+import LoginForm from './LoginForm';
 function LogIn() {
-    const [validated, setValidated] = useState(false);
+
+  const adminUser={
+    email:"admin@admin.com",
+    password:"admin123"
+  }
+  const warehouseUser={
+    email:"warehouse@warehouse.com",
+    password:"warehouse123"
+  }
+  const departmentUser={
+    email:"department@department.com",
+    password:"department123"
+  }
+  const deanUser={
+    email:"dean@dean.com",
+    password:"dean123"
+  }
+
+  const [user,setUser]=useState({name:"",email:""})
+
+    const[error,setError]=useState("");
+
     const navigate = useNavigate()
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+
+   
+    
+    var route=""
+
+    const Login=details=>{
+
+      console.log(details)
+    
+      if(details.email==adminUser.email&&details.password==adminUser.password){
+        console.log("Logged in")
+        setUser({
+          name:details.name,
+          email:details.email
+        })
+
+        navigate ("/AdminMain")
+      }
+
+      else if(details.email==warehouseUser.email&&details.password==warehouseUser.password){
+        console.log("Logged in")
+        setUser({
+          name:details.name,
+          email:details.email
+        })
+
+        navigate ("/GeneralWarehouse")
+      }
+
+      else if(details.email==departmentUser.email&&details.password==departmentUser.password){
+        console.log("Logged in")
+        setUser({
+          name:details.name,
+          email:details.email
+        })
+
+        navigate ("/DepartmentWarehouse")
+      }
+
+      else if(details.email==deanUser.email&&details.password==deanUser.password){
+        console.log("Logged in")
+        setUser({
+          name:details.name,
+          email:details.email
+        })
+
+        navigate ("/Dean")
+      }
+      
+      else{
+        console.log("details do not match")
+        setError("details do not match")
+      }
+    
     }
 
-    setValidated(true);
-  };
-  return (
 
-    <Container style={{textAlign:"centre",marginTop:"20%",marginRight:"6%", fontFamily: 'Lalezar',
-    fontSize:"2rem"}}>
-    <Form noValidate validated={validated} onSubmit={handleSubmit}  >
-    
-        
-    <Row className="mb-3">
+    const Logout=()=>{
 
-    
-      <Form.Group as={Col} md="6" controlId="validationCustom03">
-        <Form.Label>اسم المستخدم</Form.Label>
-        <Form.Control type="text" placeholder="" required />
-        <Form.Control.Feedback type="invalid">
-          ادخل اسم المستخدم من فضلك.
-        </Form.Control.Feedback>
-      </Form.Group>
-      
-    </Row>
-
-    <Row className="mb-3">
-
-    
-<Form.Group as={Col} md="6" controlId="validationCustom03">
-  <Form.Label>البريد الاكتروني </Form.Label>
-  <Form.Control type="text" placeholder="" required />
-  <Form.Control.Feedback type="invalid">
-    ادخل البريد الالكتروني  من فضلك.
-  </Form.Control.Feedback>
-</Form.Group>
-
-</Row>
-
-
-<Row className="mb-3">
-
-    
-      <Form.Group as={Col} md="6" controlId="validationCustom03">
-        <Form.Label>كلمة المرور </Form.Label>
-        <Form.Control type="password" placeholder="" required />
-        <Form.Control.Feedback type="invalid">
-          ادخل كلمه المرور من فضلك.
-        </Form.Control.Feedback>
-      </Form.Group>
-      
-    </Row>
-
-    <Row className="mb-3">
-
-    
-      <Form.Group as={Col} md="6" controlId="validationCustom03">
-        <Form.Label> في حاله نسيان اي من البيانات المطلوبه برجاء التواصل مع ادمن النظام </Form.Label>
-        
-      </Form.Group>
-      
-    </Row>
-
-
-    <Link to="/MainControl">
-    <Button type="submit" style={{textAlign:"centre",marginRight:"52%", fontFamily: 'Lalezar',
-    fontSize:"2rem"}} >تسجيل الدخول </Button>
-          </Link>
+      console.log("logout")
+      setUser({
+        name:"",
+        email:""
+      })
+    }
     
  
-  </Form>
+  return (
 
-  </Container>
+   <>
+    {(user.email!="") ? (
+    <div>
+      <h2>welcome,<span>{user.name}</span></h2>
+      <button onClick={Logout}>Logout</button>
+    </div>
+   ):(
+    <LoginForm Login={Login} error={error}></LoginForm>
+   )
+    
+   }
+   </>
   )
 }
 
