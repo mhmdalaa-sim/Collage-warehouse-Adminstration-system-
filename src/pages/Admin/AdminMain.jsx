@@ -6,11 +6,19 @@ import Logo2 from "../Assets/warehouse.png"
 import Logo3 from "../Assets/add (1).png"
 import LineChart from '../../components/LineChart'
 import RankingTable from './RankingTable'
+import Notification from '../../components/Notification'
+import NotifyData from '../../data/NotifyData'
+import {useState} from "react"
 
 function AdminMain() {
+    const [notify,setNotify]=useState(NotifyData)
   return (
   <>
-     <AdminSideNav></AdminSideNav>
+
+    <Notification data={notify}></Notification>
+    
+     <AdminSideNav ></AdminSideNav>
+
 
       <Container>
 
