@@ -10,12 +10,16 @@ import DeanBarChart from './DeanBarChart'
 import DeanPieChart from './DeanPieChart'
 import Rankings from '../../data/Rankings'
 import WarehouseRanking from './WarehouseRanking'
+import Notification from '../../components/Notification'
+import NotifyData from '../../data/NotifyData'
+
 
 function DeanMain() {
-
+  const [notify,setNotify]=useState(NotifyData)
 
  
   return (<>
+   <Notification data={notify}></Notification>
 
     <DeanSideNav></DeanSideNav>
       
