@@ -7,7 +7,12 @@ import logo3 from '../Assets/refund.png'
 import { Container ,Row,Col,Card, } from 'react-bootstrap'
 import DepartmentBarChart from '../DepartmantWarehouse/DepartmentBarChart'
 import DepartmentitemsChart from '../DepartmantWarehouse/DepartmentitemsChart'
+import Notification from '../../components/Notification'
+import NotifyData from '../../data/NotifyData'
+import { useState } from 'react'
 function GeneralMain() {
+
+  const [notify,setNotify]=useState(NotifyData)
 
   const navbar = {backgroundColor: '#448AE5',
 
@@ -27,6 +32,8 @@ function GeneralMain() {
               };
 
   return (<>
+
+  <Notification data={notify}></Notification>
  <GeneralSideNav></GeneralSideNav>
         
 
