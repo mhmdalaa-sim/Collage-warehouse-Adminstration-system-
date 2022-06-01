@@ -7,11 +7,16 @@ import { Container ,Row,Col,Card, } from 'react-bootstrap'
 import DepartmentBarChart from './DepartmentBarChart'
 import DepartmentitemsChart from './DepartmentitemsChart'
 import DepartmentSideNav from './DepartmentSideNav'
+import Notification from '../../components/Notification'
+import NotifyData from '../../data/NotifyData'
+import { useState } from 'react'
 
 
 
 
 function DepartmentMain() {
+
+  const [notify,setNotify]=useState(NotifyData)
 
   const navbar = {backgroundColor: '#448AE5',
 
@@ -33,7 +38,7 @@ function DepartmentMain() {
   
   
     <>
-  
+  <Notification data={notify}></Notification>
       <DepartmentSideNav></DepartmentSideNav>
   <Container>
 
