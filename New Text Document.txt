@@ -1,0 +1,1 @@
+ng g m Landpage --route Landpage --module app.module
